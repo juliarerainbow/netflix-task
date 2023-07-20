@@ -27,4 +27,36 @@ class DBService{
         return tempArray;
     }
 
+
+
+    static updateShow(show){
+        const updateUrl = DBService.BASE_URL+show.id;
+        return fetch(updateUrl,{
+            method:'put',
+            body: JSON.stringify(show),
+            headers:{
+                "content-type":"application/json"
+            }}).then(resp => resp.json());
+    }
+
+
+    static upvote(show){
+        show.upVotes++;
+        return this.updateShow(show);
+    }
+
+    static downvote(show){
+        show.downVotes++;
+        return this.updateShow(show);
+    }
+
+    // static getUpVote(){
+
+    // }
+
+
+    // static getDownVote(){
+
+    // }
+
 }
